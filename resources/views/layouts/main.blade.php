@@ -5,7 +5,7 @@
 </head>
 
 <body>
-    @include('includes.loader')
+    {{-- @include('includes.loader') --}}
 
     <!-- Start wrapper-->
     <div id="wrapper">

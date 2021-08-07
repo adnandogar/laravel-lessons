@@ -15,6 +15,7 @@ class ExamController extends Controller
 
     public function createProceed(Request $request){
         $data = $request->input();
+
         unset($data['_token']);
         $data['prepared_by_user_id'] = '1';
         $data['total_attempts'] = 0;
@@ -26,20 +27,54 @@ class ExamController extends Controller
 
     }
 
-    public function update(){
-        return view('admin.exam.update');
+    public function update($id){
+
+        $exam = Exam::where('id',$id)->first();
+        return view('admin.exam.update')
+            ->with('exam', $exam);
     }
 
-    public function delete(){
-        return view('admin.exam.delete');
+
+    public function updateProceed(Request $request){
+        $data = $request->input();
+        unset($data['_token']);
+        $data['prepared_by_user_id'] = '1';
+        $data['total_attempts'] = 0;
+
+        $id = $request->input('id');
+
+        $updated = Exam::where('id',$id)->update($data);
+        if($updated){
+            return redirect(route('exam_all'));
+        }
+            // [
+                // 'title' =>  $data['title'],
+                // 'desc' =>  $data['desc']
+            // ]
+
+        //     $data
+        // )
+
+
+
+    }
+
+    public function delete($id){
+
+        $isDeleted = Exam::where('id', $id)->delete();
+        if($isDeleted){
+            return redirect(route('exam_all'));
+        }else{
+            echo "Data not found against id";
+        }
     }
 
     public function all(){
 
+        $exams = Exam::orderBy('id','desc')->get();
 
-        $exams = Exam::where('title','php')->first();
-        dd($exams);
+        return view('admin.exam.all')
+        ->with('exams', $exams);
 
-        return view('admin.exam.all');
     }
 }

@@ -39,7 +39,7 @@
                 <div class="card">
                   <div class="card-header text-uppercase">Marks</div>
                    <div class="card-body">
-                     <input type="text" name="maks" class="form-control"
+                     <input type="text" name="marks" class="form-control"
                      placeholder="Enter Marks" value="100">
                    </div>
                  </div>
