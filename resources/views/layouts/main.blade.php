@@ -10,7 +10,9 @@
     <!-- Start wrapper-->
     <div id="wrapper">
 
-        @include('includes.navbar')
+        @if(\Auth::check())
+            @include('includes.navbar')
+        @endif
 
         <!-- Content -->
         @yield('content')

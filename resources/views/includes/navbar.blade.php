@@ -2,8 +2,8 @@
  <!--Start sidebar-wrapper-->
  <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
     <div class="brand-logo">
-     <a href="index.html">
-      <img src="assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
+     <a href="{{ route('dashboard') }}">
+      <img src="{{ asset('assets/images/logo-icon.png') }}" class="logo-icon" alt="logo icon">
       <h5 class="logo-text">Exam Admin</h5>
     </a>
   </div>
@@ -11,14 +11,14 @@
    <div class="media align-items-center user-pointer collapsed" data-toggle="collapse" data-target="#user-dropdown">
      <div class="avatar"><img class="mr-3 side-user-img" src="https://via.placeholder.com/110x110" alt="user avatar"></div>
       <div class="media-body">
-      <h6 class="side-user-name">Mark Johnson</h6>
+      <h6 class="side-user-name">{{ \Auth::user()->name }}</h6>
      </div>
       </div>
     <div id="user-dropdown" class="collapse">
      <ul class="user-setting-menu">
            <li><a href="javaScript:void();"><i class="icon-user"></i>  My Profile</a></li>
            <li><a href="javaScript:void();"><i class="icon-settings"></i> Setting</a></li>
-     <li><a href="javaScript:void();"><i class="icon-power"></i> Logout</a></li>
+     <li><a href="{{ route('logout') }}"><i class="icon-power"></i> Logout</a></li>
      </ul>
     </div>
      </div>
@@ -194,6 +194,15 @@
          <li class="dropdown-item"> <i class="flag-icon flag-icon-de mr-2"></i> German</li>
        </ul>
    </li>
+
+   {{-- // implmenting user auth --}}
+
+    @php
+
+        $user = \Auth::user();
+
+    @endphp
+
    <li class="nav-item">
      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
        <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle" alt="user avatar"></span>
@@ -204,8 +213,8 @@
           <div class="media">
             <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110" alt="user avatar"></div>
            <div class="media-body">
-           <h6 class="mt-2 user-title">Sarajhon Mccoy</h6>
-           <p class="user-subtitle">mccoy@example.com</p>
+           <h6 class="mt-2 user-title">{{ $user->name }}</h6>
+           <p class="user-subtitle">{{ $user->email }}</p>
            </div>
           </div>
          </a>
@@ -217,9 +226,13 @@
        <li class="dropdown-divider"></li>
        <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li>
        <li class="dropdown-divider"></li>
-       <li class="dropdown-item"><i class="icon-power mr-2"></i> Logout</li>
+       <a href="{{ route('logout') }}">
+        <li class="dropdown-item"><i class="icon-power mr-2"></i> Logout</li>
+       </a>
      </ul>
    </li>
+
+
  </ul>
 </nav>
 </header>

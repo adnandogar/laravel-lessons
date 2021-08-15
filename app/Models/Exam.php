@@ -14,4 +14,5 @@ class Exam extends Model
     'no_of_questions','marks','total_time_to_attempt',
 'total_attempts','no_of_passings'];
 
+
 }

@@ -9,6 +9,14 @@ use Illuminate\Http\Request;
 class ExamController extends Controller
 {
     //
+
+    public function __construct(){
+
+        $this->middleware('auth');
+
+    }
+
+
     public function create(){
         return view('admin.exam.create');
     }
@@ -29,7 +37,9 @@ class ExamController extends Controller
 
     public function update($id){
 
+
         $exam = Exam::where('id',$id)->first();
+
         return view('admin.exam.update')
             ->with('exam', $exam);
     }
